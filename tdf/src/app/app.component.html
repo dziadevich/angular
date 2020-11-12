@@ -1,0 +1,30 @@
+<div class="container-fluid">
+  <h1>Bootcamp Enrollment Form</h1>
+  <form>
+    <div class="form-group">
+      <label>Name
+        <input type="text" class="form-control"/>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>Email
+        <input type="email" class="form-control"/>
+      </label>
+    </div>
+    <div class="form-group">
+      <label>Phone
+        <input type="tel" class="form-control"/>
+      </label>
+    </div>
+    <div class="form-group">
+      <label> Topic
+        <select class="custom-select">
+          <option selected>I am interested in</option>
+          <option *ngFor="let topic of topics">{{topic}}</option>
+        </select>
+      </label>
+    </div>
+
+  </form>
+</div>
+<button class="btn btn-primary">Submit</button>
