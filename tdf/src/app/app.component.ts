@@ -10,6 +10,9 @@ import {EnrollmentService} from "./enrollment.service";
 export class AppComponent {
   topics = ['Angular', 'React', 'Vue'];
   topicHasError = true;
+  submitted = false;
+  errorMessage = '';
+
   userModel = new User('', 'rob@test.com', 5556667777, '',
     'morning', true);
 
@@ -24,10 +27,12 @@ export class AppComponent {
     }
   }
 
-  onSubmit() {
+  onSubmit(userForm) {
+    // console.log(userForm);
+    this.submitted = true;
     this._enrollmentService.enroll(this.userModel)
       .subscribe(data => console.log('Success!', data),
-        error => console.error('Error!', error));
+        error => this.errorMessage = error.statusText);
   }
 }
 

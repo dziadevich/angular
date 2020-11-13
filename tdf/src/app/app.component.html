@@ -1,6 +1,9 @@
 <div class="container-fluid">
   <h1>Bootcamp Enrollment Form</h1>
-  <form #userForm="ngForm" novalidate (ngSubmit)="onSubmit()">
+  <div class="alert alert-danger" *ngIf="errorMessage">
+    {{errorMessage}}
+  </div>
+  <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm)" *ngIf="!submitted" novalidate>
     {{userForm.form.valid }}
     <!--    {{userForm.value | json}}-->
     <!--    <hr/>-->
