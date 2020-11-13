@@ -1,9 +1,9 @@
 <div class="container-fluid">
   <h1>Bootcamp Enrollment Form</h1>
   <form #userForm="ngForm">
-<!--    {{userForm.value | json}}-->
-<!--    <hr/>-->
-<!--    {{userModel | json}}-->
+    <!--    {{userForm.value | json}}-->
+    <!--    <hr/>-->
+    <!--    {{userModel | json}}-->
     <!--    <div ngModelGroup="address">-->
     <!--      <div class="form-group">-->
     <!--        <label>Street-->
@@ -29,7 +29,10 @@
 
     <div class="form-group">
       <label>Name
-        <input type="text" #name="ngModel" required name="userName" class="form-control" [(ngModel)]="userModel.name"/>
+        <input type="text" #name="ngModel" required name="userName" [class.is-invalid]="name.invalid && name.touched"
+               class="form-control"
+               [(ngModel)]="userModel.name"/>
+        <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
       </label>
     </div>
     {{  name.untouched }}
@@ -40,15 +43,27 @@
     </div>
     <div class="form-group">
       <label>Phone
-        <input type="tel" name="phone" class="form-control" [(ngModel)]="userModel.phone"/>
+        <input type="tel" #phone="ngModel" pattern="^\d{10}$" required
+               [class.is-invalid]="phone.invalid && phone.touched"
+               name="phone" class="form-control" [(ngModel)]="userModel.phone"/>
+        <!--        <small class="text-danger" [class.d-none]="phone.valid || phone.untouched">-->
+        <!--          Phone number is required and must be 10 digits</small>-->
       </label>
+<!--      <div *ngIf="phone.errors && phone.valid || phone.untouched">-->
+<!--        <small class="text-danger" *ngIf="phone.errors.required">-->
+<!--          Phone number is required</small>-->
+<!--        <small class="text-danger" *ngIf="phone.errors.pattern">-->
+<!--          Phone number must be 10 digits</small>-->
+<!--      </div>-->
     </div>
     <div class="form-group">
       <label> Topic
-        <select class="custom-select" name="topic" [(ngModel)]="userModel.topic">
+        <select required #topic="ngModel" [class.is-invalid]="topic.invalid && topic.touched"
+                class="custom-select" name="topic" [(ngModel)]="userModel.topic">
           <option value="">I am interested in</option>
           <option *ngFor="let topic of topics">{{topic}}</option>
         </select>
+        <small class="text-danger" [class.d-none]="topic.valid || topic.untouched">Please choose a topic</small>
       </label>
     </div>
     <div class="mb-3">
