@@ -11,10 +11,24 @@ export class AppComponent {
     userName: new FormControl('Dmitry'),
     password: new FormControl(''),
     confirmPassword: new FormControl(''),
-    address:new FormGroup({
+    address: new FormGroup({
       city: new FormControl(''),
       state: new FormControl(''),
       postalCode: new FormControl(''),
     })
   });
+
+  loadAPI() {
+    this.registrationForm.setValue({
+      userName: 'Dmitry',
+      password: 'pass',
+      confirmPassword: 'pass',
+      address: {
+        city:'Toronto',
+        state:'ON',
+        postalCode:'M5A 4E9'
+      }
+    })
+    ;
+  }
 }
